@@ -1,0 +1,4 @@
+rootProject.name = 'qaguru_les5'
+include 'src:test:ru.augorbunov'
+findProject(':src:test:ru.augorbunov')?.name = 'ru.augorbunov'
+
