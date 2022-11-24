@@ -10,61 +10,55 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
-public class AutoPracticeFormTest {
+public class AutoPracticeFormTest extends TestBase {
         RegistrationFormPage registrationFormPage = new RegistrationFormPage();
-        @BeforeAll
-        static void setUp () {
-            Configuration.baseUrl = "https://demoqa.com";
-            Configuration.holdBrowserOpen = true;
-            Configuration.browserSize = "1920x1080";
-        }
 
         @Test
         void fillFormTest () {
             registrationFormPage.openPage()
-                    .setFirstName("Alex")
-                    .setLastName("Surname")
-                    .setEmail("test@email.com")
-                    .setGender("Other")
-                    .setMobile("1234567890")
-                    .setBirthDate("29", "June", "1990")
-                    .setSubjects("Math")
-                    .setHobbies("Sports")
-                    .uploadPicture("img/1.jpg")
-                    .setAddress("Address st. 1 apt.123")
-                    .setStateCity("Haryana", "Karnal").submitPage();
+                    .setFirstName(firstName)
+                    .setLastName(lastName)
+                    .setEmail(email)
+                    .setGender(gender)
+                    .setMobile(mobile)
+                    .setBirthDate(day, month, year)
+                    .setSubjects(subjects)
+                    .setHobbies(hobbies)
+                    .uploadPicture(picture)
+                    .setAddress(address)
+                    .setStateCity(state, city).submitPage();
 
 
             //check filled values
             registrationFormPage.checkResultsTableVisible()
-                    .checkValue("Student Name", "Alex Surname")
-                    .checkValue("Student Email", "test@email.com")
-                    .checkValue("Gender", "Other")
-                    .checkValue("Mobile", "1234567890")
-                    .checkValue("Date of Birth", "29 May,1990")
-                    .checkValue("Subjects", "Maths")
-                    .checkValue("Hobbies", "Sports")
-                    .checkValue("Picture", "1.jpg")
-                    .checkValue("Address","Address st. 1 apt.123")
-                    .checkValue("State and City", "Haryana Karnal");
+                    .checkValue("Student Name", firstName + " " + lastName)
+                    .checkValue("Student Email", email)
+                    .checkValue("Gender", gender)
+                    .checkValue("Mobile", mobile)
+                    .checkValue("Date of Birth", day + " " + month + "," + year)
+                    .checkValue("Subjects", subjects)
+                    .checkValue("Hobbies", hobbies)
+                    .checkValue("Picture", picture)
+                    .checkValue("Address",address)
+                    .checkValue("State and City", state + " " + city);
 
         }
 
         @Test
         void fillFormTestMinimal () {
             registrationFormPage.openPage()
-                    .setFirstName("Alex")
-                    .setLastName("Surname")
-                    .setGender("Other")
-                    .setMobile("1234567890")
+                    .setFirstName(firstName)
+                    .setLastName(lastName)
+                    .setGender(gender)
+                    .setMobile(mobile)
                     .submitPage();
 
 
             //check filled values
             registrationFormPage.checkResultsTableVisible()
-                    .checkValue("Student Name", "Alex Surname")
-                    .checkValue("Gender", "Other")
-                    .checkValue("Mobile", "1234567890");
+                    .checkValue("Student Name", firstName + " " + lastName)
+                    .checkValue("Gender", gender)
+                    .checkValue("Mobile", mobile);
 
         }
 
