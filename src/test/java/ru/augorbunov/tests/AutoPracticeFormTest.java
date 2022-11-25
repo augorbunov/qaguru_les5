@@ -24,7 +24,7 @@ public class AutoPracticeFormTest extends TestBase {
                     .setBirthDate(day, month, year)
                     .setSubjects(subjects)
                     .setHobbies(hobbies)
-                    .uploadPicture(picture)
+                    .uploadPicture(picturePath)
                     .setAddress(address)
                     .setStateCity(state, city).submitPage();
 

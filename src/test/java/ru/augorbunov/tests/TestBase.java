@@ -1,21 +1,26 @@
 package ru.augorbunov.tests;
 
 import com.codeborne.selenide.Configuration;
+import com.github.javafaker.Faker;
 import org.junit.jupiter.api.BeforeAll;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 public class TestBase {
-    String firstName = "Alex",
-            lastName = "Surname",
-            email = "test@email.com",
+    Faker faker = new Faker();
+    String firstName = faker.name().firstName(),
+            lastName = faker.name().lastName(),
+            email = faker.internet().emailAddress(),
             gender = "Other",
-            mobile = "1234567890",
-            day = "29",
+            mobile = faker.phoneNumber().subscriberNumber(10),
+            day = "" + ThreadLocalRandom.current().nextInt(1, 28),
             month = "June",
-            year = "1990",
+            year = "" + ThreadLocalRandom.current().nextInt(1950, 2022),
             subjects = "Math",
             hobbies = "Sports",
-            picture = "img/1.jpg",
-            address = "Address st. 1 apt.123",
+            picturePath = "img/1.jpg",
+            picture = "1.jpg",
+            address = faker.address().fullAddress(),
             state = "Haryana",
             city = "Karnal";
 
